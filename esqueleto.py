@@ -6,7 +6,6 @@ class Esqueleto(Entidade):
     vida = 360
     vel_ataque = 90
     dano = 100
-
     def logica(self):
         if self.frame > len(self.animacoes[0]) -1:
             self.frame = 0

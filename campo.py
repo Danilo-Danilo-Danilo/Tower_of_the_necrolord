@@ -8,13 +8,16 @@ class Campo:
         self.largura = largura
         self.altura = altura
         for i in range(largura):
+            linha = []
             for j in range(altura):
-                self.blocos[i].append(Lugar((i * 64) + x), (j * 64) + y, 64, 64)
+                linha.append(Lugar((i * 64) + x, (j * 64) + y, 64, 64))
+            self.blocos.append(linha)
 
     def invocar_em(self, x, y):
         for i in range(self.largura):
             for j in range(self.altura):
                 if self.blocos[i][j].colidiu(x, y):
-                    ponto = [i, j]
-                    return ponto
+                    if self.blocos[i][j].tem_unidade == False:
+                        ponto = [self.blocos[i][j].x + 2, self.blocos[i][j].y - 20]
+                        return ponto
         return None

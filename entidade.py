@@ -1,7 +1,6 @@
 from abc import ABC, abstractmethod
 from spritesheet import *
 import pygame
-from caixa_colisao import *
 
 class Entidade(ABC):
     def __init__(self, x, y, largura, altura, sprites, max_frames, max_linhas):
@@ -10,7 +9,6 @@ class Entidade(ABC):
         self.largura = largura
         self.altura = altura
         self.frame = 0
-        caixa = Caixa_Colisao(self.x, self.y, self.largura, self.altura)
 
         self.animacoes = []
         for i in range(max_linhas):

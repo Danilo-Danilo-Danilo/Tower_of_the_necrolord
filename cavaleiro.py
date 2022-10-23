@@ -1,5 +1,6 @@
 from spritesheet import *
 from entidade import *
+from tropas import *
 import pygame
 
 class Cavaleiro(Entidade):
@@ -12,7 +13,7 @@ class Cavaleiro(Entidade):
         if self.frame > len(self.animacoes[0]) -1:
             self.frame = 0
         else:
-            self.frame += 0.3
+            self.frame += 0.5
         if not self.colodiu(matriz_tropas):
             self.x -= self.velocidade
 
@@ -25,7 +26,7 @@ class Cavaleiro(Entidade):
             x1 = esq.x + (esq.largura * 2)
             y0 = esq.y
             y1 = esq.y + (esq.altura * 2)
-            if x0 <= self.x - self.velocidade <= x1:
+            if x0 <= self.x <= x1:
                 if y0 - 2 <= self.y <= y1 - 2:
                     return True
         return False

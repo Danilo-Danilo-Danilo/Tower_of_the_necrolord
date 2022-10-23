@@ -7,9 +7,8 @@ pygame.init()
 win = pygame.display.set_mode((768, 512))
 pygame.display.set_caption("Tower of the Necrolord!")
 bg_img = pygame.image.load('sprites/bg.png')
-entidades = Tropas()
 tabuleiro = Campo(704, 384, 50, 128)
-
+entidades = Tropas(tabuleiro)
 run = True
 while run:
     entidades.logica()

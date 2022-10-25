@@ -8,7 +8,7 @@ class Mouse():
     def __init__(self):
         self.x, self.y = pygame.mouse.get_pos()
         self.unidade = None
-        self.id = None
+
     def pegar_carta(self, card_hold):
         for carta in card_hold.cartas:
             if carta.x < self.x < carta.x + carta.largura:
@@ -16,13 +16,12 @@ class Mouse():
                     if pygame.mouse.get_pressed()[0]:
                         if self.unidade is None:
                             self.unidade = carta.sprite_un
-                            self.id = carta.id
+                            print("Esqueleto")
 
     def soltar_carta(self):
         if self.unidade is not None:
                 if pygame.mouse.get_pressed()[2]:
                     self.unidade = None
-                    self.id = None
 
     def logica(self):
         self.x, self.y = pygame.mouse.get_pos()
@@ -30,7 +29,5 @@ class Mouse():
     def exibir(self, win):
         if self.unidade is not None:
             win.blit(self.unidade, (self.x, self.y))
-
-
 
 

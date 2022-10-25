@@ -20,7 +20,8 @@ class Tropas:
                 if ponto is not None:
                     match mouse.id:
                         case 1:
-                            self.matriz_tropas.append(Esqueleto(ponto[0], ponto[1], 32, 32, self.esq_ss, 5, 2))
+                            esqueleto = Esqueleto(ponto[0], ponto[1], 32, 32, self.esq_ss, 5, 2)
+                            self.matriz_tropas.append(esqueleto)
                             mouse.id = None
                             mouse.unidade = None
                             tabuleiro.blocos[ponto[2]][ponto[3]].tem_unidade = True
@@ -43,3 +44,9 @@ class Tropas:
             i.logica(self.matriz_inimigos, self.tabuleiro)
         for i in self.matriz_inimigos:
             i.logica(self.matriz_tropas)
+
+    def atirar(self, projeteis):
+        for i in self.matriz_tropas:
+            if i.id == 1:
+                projeteis = i.atirando(projeteis)
+        return projeteis

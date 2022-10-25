@@ -2,7 +2,8 @@ import pygame
 from tropas import *
 from campo import *
 from card_holder import *
-from mouse import Mouse
+from mouse import *
+from projeteis import *
 from carta import Carta
 from esqueleto import Esqueleto
 pygame.init()
@@ -14,10 +15,12 @@ sprite_carta = (pygame.transform.scale((pygame.image.load('sprites/card-skeleton
 tabuleiro = Campo(12, 6, 50, 128)
 entidades = Tropas(tabuleiro)
 mouse = Mouse()
+projeteis = Projeteis()
 card_holder = Card_Holder(3)
 run = True
 while run:
     entidades.logica()
+    projeteis = entidades.atirar(projeteis)
     x, y = pygame.mouse.get_pos()
     mouse.logica(card_holder)
     win.blit(bg_img, (0, 0))
@@ -31,6 +34,7 @@ while run:
         if event.type == pygame.KEYDOWN:
             entidades.invocar_inimigos(x, y, tabuleiro)
     entidades.exibir(win)
+    projeteis.exibir(win)
 
 
 

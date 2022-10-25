@@ -1,5 +1,4 @@
-import pygame.image
-
+import pygame
 from carta import *
 from spritesheet import *
 

@@ -26,7 +26,7 @@ class Cavaleiro(Entidade):
             x1 = esq.x + (esq.largura * 2)
             y0 = esq.y
             y1 = esq.y + (esq.altura * 2)
-            if x0 <= self.x <= x1:
+            if x0 <= self.x + 5 <= x1:
                 if y0 - 2 <= self.y <= y1 - 2:
                     return True
         return False

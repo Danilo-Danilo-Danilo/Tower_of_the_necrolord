@@ -11,27 +11,25 @@ win = pygame.display.set_mode((768, 512))
 pygame.display.set_caption("Tower of the Necrolord!")
 bg_img = pygame.image.load('sprites/bg.png')
 sprite_carta = (pygame.transform.scale((pygame.image.load('sprites/card-skeleton-001.png')), (64, 64)))
-tabuleiro = Campo(11, 6, 50, 128)
+tabuleiro = Campo(12, 6, 50, 128)
 entidades = Tropas(tabuleiro)
 mouse = Mouse()
-card_holder = Card_Holder()
+card_holder = Card_Holder(3)
 run = True
 while run:
     entidades.logica()
     x, y = pygame.mouse.get_pos()
-    mouse.logica()
+    mouse.logica(card_holder)
     win.blit(bg_img, (0, 0))
     card_holder.exibir(win)
     mouse.exibir(win)
-    mouse.pegar_carta(card_holder)
-    mouse.soltar_carta()
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             run = False
         if event.type == pygame.MOUSEBUTTONDOWN:
-            entidades.invocar_tropa(x, y, tabuleiro, 1)
+            mouse = entidades.invocar_tropa(x, y, tabuleiro, mouse)
         if event.type == pygame.KEYDOWN:
-            entidades.invocar_inimigo(x, y, tabuleiro)
+            entidades.invocar_inimigos(x, y, tabuleiro)
     entidades.exibir(win)
 
 

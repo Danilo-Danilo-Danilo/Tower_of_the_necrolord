@@ -12,13 +12,13 @@ class Esqueleto(Entidade):
     def logica(self, matriz_inimigos, tabuleiro):
         if self.colodiu(matriz_inimigos, tabuleiro):
             self.atirar = True
-            if self.frame > len(self.animacoes[1]) - 1:
+            if self.frame >= len(self.animacoes[1]) - 1:
                 self.frame = 0
             else:
-                self.frame += 0.4
+                self.frame += 0.3
         else:
             self.atirar = False
-            if self.frame > len(self.animacoes[0]) -1:
+            if self.frame >= len(self.animacoes[0]) -1:
                 self.frame = 0
             else:
                 self.frame += 0.3
@@ -35,7 +35,7 @@ class Esqueleto(Entidade):
             x1 = cav.x + (cav.largura * 2)
             y0 = cav.y
             y1 = cav.y + (cav.altura * 2)
-            if x0 <= tabuleiro.x + tabuleiro.largura:
+            if x0 <= tabuleiro.x + (tabuleiro.largura -2) * 64:
                 if y0 - 2 <= self.y <= y1 - 2:
                         print("tem cavaleiro")
                         return True

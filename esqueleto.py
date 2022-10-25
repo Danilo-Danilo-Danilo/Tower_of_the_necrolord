@@ -4,6 +4,7 @@ from tropas import *
 import pygame
 
 class Esqueleto(Entidade):
+    id = 1
     vida = 360
     vel_ataque = 90
     dano = 100

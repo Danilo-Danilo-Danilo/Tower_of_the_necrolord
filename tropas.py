@@ -12,12 +12,17 @@ class Tropas:
         self.cava_ss = Spritesheet(pygame.image.load('sprites/ss_cavaleiro.png').convert_alpha())
         self.tabuleiro = tabuleiro
 
-    def invocar_tropa(self, x, y, tabuleiro, id):
+    def invocar_tropa(self, x, y, tabuleiro, mouse):
         ponto = tabuleiro.invocar_em(x, y)
-        if ponto is not None:
-            match id:
-                case 1:
-                    self.matriz_tropas.append(Esqueleto(ponto[0], ponto[1], 32, 32, self.esq_ss, 5, 2))
+        if pygame.mouse.get_pressed()[0]:
+            if mouse.id is not None:
+                if ponto is not None:
+                    match mouse.id:
+                        case 1:
+                            self.matriz_tropas.append(Esqueleto(ponto[0], ponto[1], 32, 32, self.esq_ss, 5, 2))
+                            mouse.id = None
+                            mouse.unidade = None
+        return mouse
 
     def invocar_inimigo(self, x, y, tabuleiro):
         ponto = tabuleiro.invocar_em(x, y)

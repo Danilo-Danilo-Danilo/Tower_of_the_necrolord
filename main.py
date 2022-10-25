@@ -29,7 +29,7 @@ while run:
         if event.type == pygame.QUIT:
             run = False
         if event.type == pygame.MOUSEBUTTONDOWN:
-            entidades.invocar_tropa(x, y, tabuleiro, 1)
+            mouse = entidades.invocar_tropa(x, y, tabuleiro, mouse)
         if event.type == pygame.KEYDOWN:
             entidades.invocar_inimigo(x, y, tabuleiro)
     entidades.exibir(win)

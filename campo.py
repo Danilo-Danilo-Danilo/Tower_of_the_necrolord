@@ -18,7 +18,7 @@ class Campo:
             for j in range(self.altura):
                 if self.blocos[i][j].colidiu(x, y):
                     if self.blocos[i][j].tem_unidade == False:
-                        ponto = [self.blocos[i][j].x + 2, self.blocos[i][j].y - 20]
+                        ponto = [self.blocos[i][j].x + 4, self.blocos[i][j].y - 26]
                         self.blocos[i][j].tem_unidade = True
                         return ponto
         return None

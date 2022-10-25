@@ -13,7 +13,7 @@ class Tropas:
     def invocar_tropa(self, x, y, tabuleiro):
         ponto = tabuleiro.invocar_em(x,y)
         if ponto is not None:
-            self.matriz_tropas.append(Esqueleto(ponto[0], ponto[1], 32, 32, self.esq_ss, 5, 2))
+            self.matriz_tropas.append(Esqueleto(ponto[0], ponto[1], 32, 32, self.esq_ss, 4, 2))
     def invocar_inimigo(self, x, y, tabuleiro):
         ponto = tabuleiro.invocar_em(x,y)
         if ponto is not None:

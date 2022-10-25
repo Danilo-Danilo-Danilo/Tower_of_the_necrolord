@@ -1,7 +1,9 @@
+from altar import *
 from esqueleto import *
 from ponto_invoc import *
 from cavaleiro import *
 from campo import *
+
 
 
 class Tropas:
@@ -12,6 +14,7 @@ class Tropas:
         self.matriz_inimigos = []
         self.cava_ss = Spritesheet(pygame.image.load('sprites/ss_cavaleiro.png').convert_alpha())
         self.tabuleiro = tabuleiro
+        self.altar_ss = Spritesheet(pygame.image.load('sprites/altar_sprite.png').convert_alpha())
 
     def invocar_tropa(self, x, y, tabuleiro, mouse):
         ponto = tabuleiro.invocar_em(x, y)
@@ -23,6 +26,11 @@ class Tropas:
                             self.matriz_tropas.append(Esqueleto(ponto[0], ponto[1], 32, 32, self.esq_ss, 5, 2))
                             mouse.id = None
                             mouse.unidade = None
+                            tabuleiro.blocos[ponto[2]][ponto[3]].tem_unidade = True
+                        case 2:
+                            mouse.id = None
+                            mouse.unidade = None
+                            self.matriz_tropas.append(Altar(ponto[0], ponto[1], 32, 32, self.altar_ss, 5, 2))
                             tabuleiro.blocos[ponto[2]][ponto[3]].tem_unidade = True
         return mouse
 
@@ -40,6 +48,9 @@ class Tropas:
 
     def logica(self):
         for i in self.matriz_tropas:
-            i.logica(self.matriz_inimigos, self.tabuleiro)
+            if i.id == 2:
+                i.logica(self.matriz_tropas)
+            else:
+                i.logica(self.matriz_inimigos, self.tabuleiro)
         for i in self.matriz_inimigos:
             i.logica(self.matriz_tropas)

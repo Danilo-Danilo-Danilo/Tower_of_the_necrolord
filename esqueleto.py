@@ -4,6 +4,7 @@ from tropas import *
 import pygame
 
 class Esqueleto(Entidade):
+    id = 1
     vida = 360
     vel_ataque = 90
     dano = 100
@@ -34,7 +35,7 @@ class Esqueleto(Entidade):
             x1 = cav.x + (cav.largura * 2)
             y0 = cav.y
             y1 = cav.y + (cav.altura * 2)
-            if x0 <= tabuleiro.x + tabuleiro.largura:
+            if x0 <= tabuleiro.x + (tabuleiro.largura -2) * 64:
                 if y0 - 2 <= self.y <= y1 - 2:
                         print("tem cavaleiro")
                         return True

@@ -17,8 +17,11 @@ entidades = Tropas(tabuleiro)
 mouse = Mouse()
 projeteis = Projeteis()
 card_holder = Card_Holder(3)
+tempo = 1
+level_1 = [1, 1, 1, 2, 2, 2, 3, 4, 6, 8]
 run = True
 while run:
+    entidades.spawn_inimigos(tempo, level_1)
     entidades.logica()
     projeteis = entidades.atirar(projeteis)
     x, y = pygame.mouse.get_pos()
@@ -35,8 +38,11 @@ while run:
             entidades.invocar_inimigos(x, y, tabuleiro)
     entidades.exibir(win)
     projeteis.exibir(win)
+    entidades.matriz_inimigos = projeteis.colisao(entidades.matriz_inimigos)
+    for i in entidades.matriz_inimigos:
+        entidades.matriz_tropas = i.atacar(entidades.matriz_tropas)
 
-
-
+    tempo += 1
+    print(tempo)
     pygame.time.delay(60)
     pygame.display.update()

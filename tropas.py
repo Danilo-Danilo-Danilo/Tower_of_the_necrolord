@@ -1,9 +1,10 @@
+import random
+
 from altar import *
 from esqueleto import *
 from ponto_invoc import *
 from cavaleiro import *
 from campo import *
-
 
 
 class Tropas:
@@ -15,7 +16,7 @@ class Tropas:
         self.cava_ss = Spritesheet(pygame.image.load('sprites/ss_cavaleiro.png').convert_alpha())
         self.tabuleiro = tabuleiro
         self.altar_ss = Spritesheet(pygame.image.load('sprites/altar_sprite.png').convert_alpha())
-
+        self.wave = 1
     def invocar_tropa(self, x, y, tabuleiro, mouse):
         ponto = tabuleiro.invocar_em(x, y)
         if pygame.mouse.get_pressed()[0]:
@@ -44,7 +45,16 @@ class Tropas:
         ponto = tabuleiro.invocar_em(x, y)
         if ponto is not None:
             self.matriz_inimigos.append(Cavaleiro(ponto[0], ponto[1], 32, 32, self.cava_ss, 4, 1))
+            print(ponto[0])
+            print(ponto[1])
 
+    def spawn_inimigos(self, tempo, level):
+        if tempo == (90 * self.wave):
+            for i in range(level[self.wave]):
+                random.seed()
+                y = ((random.randint(0, 5) * 64) + 118)
+                self.matriz_inimigos.append(Cavaleiro(780, y, 32, 32, self.cava_ss, 4, 1))
+                self.wave += 1
     def exibir(self, win):
         for i in self.matriz_tropas:
             i.exibir(win)

@@ -40,7 +40,6 @@ class Esqueleto(Entidade):
             y1 = cav.y + (cav.altura * 2)
             if x0 <= tabuleiro.x + (tabuleiro.largura -2) * 64:
                 if y0 - 2 <= self.y <= y1 - 2:
-                        print("tem cavaleiro")
                         return True
         return False
     def atirando(self, projeteis):
@@ -51,7 +50,7 @@ class Esqueleto(Entidade):
         elif self.cooldown == 0:
             if self.atirar is not None:
                 if self.atirar:
-                    projetil = Projetil(self.tijolo, self.x + 10, self.y + 16, 40)
+                    projetil = Projetil(self.tijolo, self.x + 10, self.y + 16, 30, 40)
                     projeteis.ad_projetil(projetil)
                     self.cooldown += 1
         return projeteis

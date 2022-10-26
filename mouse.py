@@ -34,7 +34,7 @@ class Mouse():
         self.mana.logica()
     def exibir(self, win):
         if self.unidade is not None:
-            win.blit(self.unidade, (self.x, self.y))
+            win.blit(self.unidade, (self.x - 32, self.y - 32))
         self.mana.exibir(win)
 
 

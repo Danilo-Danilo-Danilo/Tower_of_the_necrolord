@@ -4,7 +4,6 @@ from campo import *
 from card_holder import *
 from mouse import *
 from projeteis import *
-from mana import *
 from carta import Carta
 from esqueleto import Esqueleto
 pygame.init()
@@ -18,11 +17,9 @@ entidades = Tropas(tabuleiro)
 mouse = Mouse()
 projeteis = Projeteis()
 card_holder = Card_Holder(3)
-manabar = Mana(400, 16)
 run = True
 while run:
     entidades.logica()
-    manabar.logica()
     projeteis = entidades.atirar(projeteis)
     x, y = pygame.mouse.get_pos()
     mouse.logica(card_holder)
@@ -38,7 +35,6 @@ while run:
             entidades.invocar_inimigos(x, y, tabuleiro)
     entidades.exibir(win)
     projeteis.exibir(win)
-    manabar.exibir(win)
 
 
 

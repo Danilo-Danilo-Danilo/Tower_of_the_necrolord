@@ -23,16 +23,20 @@ class Tropas:
                 if ponto is not None:
                     match mouse.id:
                         case 1:
-                            esqueleto = Esqueleto(ponto[0], ponto[1], 32, 32, self.esq_ss, 5, 2)
-                            self.matriz_tropas.append(esqueleto)
-                            mouse.id = None
-                            mouse.unidade = None
-                            tabuleiro.blocos[ponto[2]][ponto[3]].tem_unidade = True
+                            if mouse.mana.mana_tamanho >= 60:
+                                esqueleto = Esqueleto(ponto[0], ponto[1], 32, 32, self.esq_ss, 5, 2)
+                                self.matriz_tropas.append(esqueleto)
+                                mouse.id = None
+                                mouse.unidade = None
+                                mouse.mana.mana_tamanho -= 60
+                                tabuleiro.blocos[ponto[2]][ponto[3]].tem_unidade = True
                         case 2:
-                            mouse.id = None
-                            mouse.unidade = None
-                            self.matriz_tropas.append(Altar(ponto[0], ponto[1], 32, 32, self.altar_ss, 5, 2))
-                            tabuleiro.blocos[ponto[2]][ponto[3]].tem_unidade = True
+                            if mouse.mana.mana_tamanho >= 40:
+                                mouse.id = None
+                                mouse.unidade = None
+                                self.matriz_tropas.append(Altar(ponto[0], ponto[1], 32, 32, self.altar_ss, 5, 2))
+                                tabuleiro.blocos[ponto[2]][ponto[3]].tem_unidade = True
+                                mouse.mana.mana_tamanho -= 40
         return mouse
 
 

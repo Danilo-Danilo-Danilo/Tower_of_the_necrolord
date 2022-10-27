@@ -63,6 +63,9 @@ class Tropas:
             i.exibir(win)
 
     def logica(self, mouse):
+        for i in self.matriz_inimigos:
+            if i.x + 64 <= 0:
+                print("Tu perdeu chefia")
         for i in self.matriz_tropas:
             if i.id == 2:
                 i.logica(mouse)

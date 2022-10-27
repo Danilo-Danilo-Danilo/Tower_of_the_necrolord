@@ -23,6 +23,4 @@ class Altar(Entidade):
 
     def exibir(self, win):
         win.blit(self.animacoes[0][int(self.frame)], (self.x, self.y))
-        if 52 < self.tempo_recarga -1 < 60:
-            win.blit(self.animacoes[1][int(self.frame - 1)], (self.x, self.y))
 

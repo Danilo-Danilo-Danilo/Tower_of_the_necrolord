@@ -4,7 +4,7 @@ from entidade import *
 class Mana():
     def __init__(self, x, y):
         self.mana_total = 256
-        self.mana_ps = 10
+        self.mana_ps = 1
         self.mana_tamanho = 24
         self.sprite_back = pygame.transform.scale(pygame.image.load('sprites/mana-back.png'), (self.mana_total + 8, 18))
         self.sprite_fro = pygame.transform.scale(pygame.image.load('sprites/mana-glass.png'), (self.mana_total + 8, 24))

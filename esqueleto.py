@@ -48,9 +48,8 @@ class Esqueleto(Entidade):
             if self.cooldown == 15:
                 self.cooldown = 0
         elif self.cooldown == 0:
-            if self.atirar is not None:
-                if self.atirar:
-                    projetil = Projetil(self.tijolo, self.x + 10, self.y + 16, 30, 40)
-                    projeteis.ad_projetil(projetil)
-                    self.cooldown += 1
+            if self.atirar:
+                projetil = Projetil(self.tijolo, self.x + 10, self.y + 16, 30, 40)
+                projeteis.ad_projetil(projetil)
+                self.cooldown += 1
         return projeteis

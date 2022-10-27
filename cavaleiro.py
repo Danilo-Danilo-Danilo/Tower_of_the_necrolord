@@ -35,12 +35,17 @@ class Cavaleiro(Entidade):
     def atacar(self, matriz_tropas):
         if self.cooldown_ataque == 0:
             for esq in matriz_tropas:
-                if self.colodiu(matriz_tropas):
-                    esq.vida -= self.dano
-                    self.cooldown_ataque += 1
-                    if esq in matriz_tropas:
+                x0 = esq.x
+                x1 = esq.x + (esq.largura * 2)
+                y0 = esq.y
+                y1 = esq.y + (esq.altura * 2)
+                if x0 <= self.x + 5 <= x1:
+                    if y0 - 2 <= self.y <= y1 - 2:
+                        esq.vida -= self.dano
+                        self.cooldown_ataque += 1
+                    """if esq in matriz_tropas:
                         if esq.vida <= 0:
-                            matriz_tropas.remove(esq)
+                            matriz_tropas.remove(esq)"""
         elif self.cooldown_ataque > 0:
             self.cooldown_ataque += 1
         if self.cooldown_ataque == self.vel_ataque:

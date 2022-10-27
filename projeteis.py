@@ -18,7 +18,7 @@ class Projeteis:
     def colisao(self, matriz_inimigos):
         for projetil in self.projeteis:
             for inimigo in matriz_inimigos:
-                if (inimigo.x <= projetil.x <= inimigo.x + 32) and (inimigo.y <= projetil.y <= inimigo.y +32):
+                if (inimigo.x <= projetil.x <= inimigo.x + 64) and (inimigo.y <= projetil.y <= inimigo.y +32):
                     if projetil in self.projeteis:
                         self.projeteis.remove(projetil)
                         inimigo.vida -= projetil.dano

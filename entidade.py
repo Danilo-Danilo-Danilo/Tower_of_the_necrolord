@@ -3,13 +3,14 @@ from spritesheet import *
 import pygame
 
 class Entidade(ABC):
-    def __init__(self, x, y, largura, altura, sprites, max_frames, max_linhas):
+    def __init__(self, x, y, largura, altura, sprites, max_frames, max_linhas, linha, coluna):
         self.x = x
         self.y = y
         self.largura = largura
         self.altura = altura
         self.frame = 0
-
+        self.linha = linha
+        self.coluna = coluna
         self.animacoes = []
         for i in range(max_linhas):
             sprites_vetor = []

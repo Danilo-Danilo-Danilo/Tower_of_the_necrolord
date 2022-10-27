@@ -2,6 +2,7 @@ from esqueleto import *
 from campo import *
 from card_holder import *
 from carta import *
+from mana import *
 import pygame
 
 class Mouse():
@@ -9,6 +10,7 @@ class Mouse():
         self.x, self.y = pygame.mouse.get_pos()
         self.unidade = None
         self.id = None
+        self.mana = Mana(400, 16)
 
     def pegar_carta(self, card_hold):
         for carta in card_hold.cartas:
@@ -29,10 +31,11 @@ class Mouse():
         self.x, self.y = pygame.mouse.get_pos()
         self.pegar_carta(card_hold)
         self.soltar_carta()
-
+        self.mana.logica()
     def exibir(self, win):
         if self.unidade is not None:
-            win.blit(self.unidade, (self.x, self.y))
+            win.blit(self.unidade, (self.x - 32, self.y - 32))
+        self.mana.exibir(win)
 
 
 

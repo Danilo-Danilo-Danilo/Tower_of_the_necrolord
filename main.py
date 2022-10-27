@@ -4,7 +4,6 @@ from campo import *
 from card_holder import *
 from mouse import *
 from projeteis import *
-from mana import *
 from carta import Carta
 from esqueleto import Esqueleto
 pygame.init()
@@ -18,11 +17,12 @@ entidades = Tropas(tabuleiro)
 mouse = Mouse()
 projeteis = Projeteis()
 card_holder = Card_Holder(3)
-manabar = Mana(400, 16)
+tempo = 1
+level_1 = [1, 1, 1, 2, 2, 2, 3, 4, 6, 8]
 run = True
 while run:
-    entidades.logica()
-    manabar.logica()
+    entidades.spawn_inimigos(tempo, level_1)
+    entidades.logica(mouse)
     projeteis = entidades.atirar(projeteis)
     x, y = pygame.mouse.get_pos()
     mouse.logica(card_holder)
@@ -38,9 +38,10 @@ while run:
             entidades.invocar_inimigos(x, y, tabuleiro)
     entidades.exibir(win)
     projeteis.exibir(win)
-    manabar.exibir(win)
+    entidades.matriz_inimigos = projeteis.colisao(entidades.matriz_inimigos)
+    for i in entidades.matriz_inimigos:
+        entidades.matriz_tropas = i.atacar(entidades.matriz_tropas)
 
-
-
+    tempo += 1
     pygame.time.delay(60)
     pygame.display.update()

@@ -1,8 +1,6 @@
-from spritesheet import *
-from entidade import *
-from tropas import *
 from projetil import *
 import pygame
+from entidade import *
 
 class Esqueleto(Entidade):
     id = 1
@@ -12,6 +10,7 @@ class Esqueleto(Entidade):
     tijolo = pygame.transform.scale((pygame.image.load('sprites/sbrick.png')), (32, 32))
     atirar = False
     cooldown = 7
+
     def logica(self, matriz_inimigos, tabuleiro):
         if self.colodiu(matriz_inimigos, tabuleiro):
             self.atirar = True

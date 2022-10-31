@@ -4,7 +4,7 @@ from tropas import *
 import pygame
 
 class Cavaleiro(Entidade):
-    vida = 540
+    vida = 400
     velocidade = 2
     dano = 100
     vel_ataque = 60

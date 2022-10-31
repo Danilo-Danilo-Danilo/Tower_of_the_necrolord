@@ -4,6 +4,7 @@ from esqueleto import *
 from ponto_invoc import *
 from cavaleiro import *
 from campo import *
+from mago import *
 
 
 class Tropas:
@@ -16,6 +17,7 @@ class Tropas:
         self.esq_ss = Spritesheet(pygame.image.load('sprites/ss_todo.png').convert_alpha())
         self.altar_ss = Spritesheet(pygame.image.load('sprites/altar_sprite.png').convert_alpha())
         self.tank_ss = Spritesheet(pygame.image.load('sprites/skeleto_tank.png').convert_alpha())
+        self.mago_ss = Spritesheet(pygame.image.load('sprites/mage-001.png').convert_alpha())
         self.wave = 1
     def invocar_tropa(self, x, y, tabuleiro, mouse):
         p = tabuleiro.invocar_em(x, y)
@@ -50,9 +52,7 @@ class Tropas:
     def invocar_inimigos(self, x, y, tabuleiro):
         p = tabuleiro.invocar_em(x, y)
         if p is not None:
-            self.matriz_inimigos.append(Cavaleiro(p[0], p[1], 32, 32, self.cava_ss, 4, 1, p[2], p[3]))
-            print(p[0])
-            print(p[1])
+            self.matriz_inimigos.append(Mago(p[0], p[1], 32, 32, self.mago_ss, 1, 1, p[2], p[3]))
 
     def spawn_inimigos(self, tempo, level):
         if tempo == (90 * self.wave):
@@ -86,6 +86,9 @@ class Tropas:
     def atirar(self, projeteis):
         for i in self.matriz_tropas:
             if i.id == 1:
+                projeteis = i.atirando(projeteis)
+        for i in self.matriz_inimigos:
+            if i.id == 2:
                 projeteis = i.atirando(projeteis)
         return projeteis
 

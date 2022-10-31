@@ -80,6 +80,7 @@ while rodando:
         entidades.exibir(win)
         projeteis.exibir(win)
         entidades.matriz_inimigos = projeteis.colisao(entidades.matriz_inimigos)
+        entidades.matriz_tropas = projeteis.colisao(entidades.matriz_tropas)
         for i in entidades.matriz_inimigos:
             entidades.matriz_tropas = i.atacar(entidades.matriz_tropas)
 

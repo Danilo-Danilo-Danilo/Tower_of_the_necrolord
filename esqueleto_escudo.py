@@ -3,7 +3,7 @@ from entidade import *
 class Esqueleto_Tank(Entidade):
     id = 3
     vida = 3000
-
+    lado = 0
 
     def logica(self, mouse):
         if self.frame > len(self.animacoes[0]) -1:

@@ -4,12 +4,13 @@ from tropas import *
 import pygame
 
 class Cavaleiro(Entidade):
+    id = 1
     vida = 400
     velocidade = 2
     dano = 100
     vel_ataque = 60
     cooldown_ataque = 0
-
+    lado = 1
     def logica(self, matriz_tropas):
         if self.frame > len(self.animacoes[0]) -1:
             self.frame = 0
@@ -43,9 +44,7 @@ class Cavaleiro(Entidade):
                     if y0 - 2 <= self.y <= y1 - 2:
                         esq.vida -= self.dano
                         self.cooldown_ataque += 1
-                    """if esq in matriz_tropas:
-                        if esq.vida <= 0:
-                            matriz_tropas.remove(esq)"""
+
         elif self.cooldown_ataque > 0:
             self.cooldown_ataque += 1
         if self.cooldown_ataque == self.vel_ataque:

@@ -10,6 +10,7 @@ class Esqueleto(Entidade):
     tijolo = pygame.transform.scale((pygame.image.load('sprites/sbrick.png')), (32, 32))
     atirar = False
     cooldown = 7
+    lado = 0
 
     def logica(self, matriz_inimigos, tabuleiro):
         if self.colodiu(matriz_inimigos, tabuleiro):
@@ -44,11 +45,11 @@ class Esqueleto(Entidade):
     def atirando(self, projeteis):
         if self.cooldown > 0:
             self.cooldown += 1
-            if self.cooldown == 15:
+            if self.cooldown == 30:
                 self.cooldown = 0
         elif self.cooldown == 0:
             if self.atirar:
-                projetil = Projetil(self.tijolo, self.x + 10, self.y + 16, 30, 40)
+                projetil = Projetil(self.tijolo, self.x + 10, self.y + 16, 30, 40, 0)
                 projeteis.ad_projetil(projetil)
                 self.cooldown += 1
         return projeteis

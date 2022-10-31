@@ -7,7 +7,7 @@ class Altar(Entidade):
     vida = 300
     energia = 30
     tempo_de_animacao_da_gota = 0
-
+    lado = 0
     def logica(self, mouse):
         if self.tempo_recarga == 60:
             self.tempo_recarga = 0

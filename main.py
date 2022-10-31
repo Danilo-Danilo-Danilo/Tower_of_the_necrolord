@@ -14,7 +14,7 @@ while rodando:
     win = pygame.display.set_mode((768, 512))
     pygame.display.set_caption("Tower of the Necrolord!")
     bg_img = pygame.image.load('sprites/bg.png')
-    creditos = pygame.image.load('sprites/CREDITOS.png')
+    creditos = pygame.image.load('sprites/creditos_msm.png').convert_alpha()
     como = pygame.image.load('sprites/como_jogar.png')
     menu = Menu(768, 512)
     sprite_carta = (pygame.transform.scale((pygame.image.load('sprites/card-skeleton-001.png')), (64, 64)))

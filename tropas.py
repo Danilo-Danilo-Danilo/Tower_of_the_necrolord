@@ -1,5 +1,4 @@
 import random
-
 from altar import *
 from esqueleto import *
 from ponto_invoc import *
@@ -11,11 +10,12 @@ class Tropas:
     def __init__(self, tabuleiro):
         self.atraso_invoc = 0
         self.matriz_tropas = []
-        self.esq_ss = Spritesheet(pygame.image.load('sprites/ss_todo.png').convert_alpha())
         self.matriz_inimigos = []
-        self.cava_ss = Spritesheet(pygame.image.load('sprites/ss_cavaleiro.png').convert_alpha())
         self.tabuleiro = tabuleiro
+        self.cava_ss = Spritesheet(pygame.image.load('sprites/ss_cavaleiro.png').convert_alpha())
+        self.esq_ss = Spritesheet(pygame.image.load('sprites/ss_todo.png').convert_alpha())
         self.altar_ss = Spritesheet(pygame.image.load('sprites/altar_sprite.png').convert_alpha())
+        self.tank_ss = Spritesheet(pygame.image.load('sprites/skeleto_tank.png').convert_alpha())
         self.wave = 1
     def invocar_tropa(self, x, y, tabuleiro, mouse):
         p = tabuleiro.invocar_em(x, y)
@@ -25,8 +25,7 @@ class Tropas:
                     match mouse.id:
                         case 1:
                             if mouse.mana.mana_tamanho >= 60:
-                                esqueleto = Esqueleto(p[0], p[1], 32, 32, self.esq_ss, 5, 2, p[2], p[3])
-                                self.matriz_tropas.append(esqueleto)
+                                self.matriz_tropas.append(Esqueleto(p[0], p[1], 32, 32,self.esq_ss, 5, 2, p[2], p[3]))
                                 mouse.id = None
                                 mouse.unidade = None
                                 mouse.mana.mana_tamanho -= 60
@@ -38,6 +37,13 @@ class Tropas:
                                 self.matriz_tropas.append(Altar(p[0], p[1], 32, 32, self.altar_ss, 5, 2, p[2], p[3]))
                                 tabuleiro.blocos[p[2]][p[3]].tem_unidade = True
                                 mouse.mana.mana_tamanho -= 40
+                        case 3:
+                            if mouse.mana.mana_tamanho >= 60:
+                                mouse.id = None
+                                mouse.unidade = None
+                                self.matriz_tropas.append(Altar(p[0], p[1], 32, 32, self.tank_ss, 1, 1, p[2], p[3]))
+                                tabuleiro.blocos[p[2]][p[3]].tem_unidade = True
+                                mouse.mana.mana_tamanho -= 60
         return mouse
 
 

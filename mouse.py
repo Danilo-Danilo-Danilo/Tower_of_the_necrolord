@@ -18,8 +18,9 @@ class Mouse():
                 if carta.y < self.y < carta.y + carta.altura:
                     if pygame.mouse.get_pressed()[0]:
                         if self.unidade is None:
-                            self.unidade = carta.sprite_un
-                            self.id = carta.id
+                            if carta.contador == 0:
+                                self.unidade = carta.sprite_un
+                                self.id = carta.id
 
     def soltar_carta(self):
         if self.unidade is not None:
@@ -32,6 +33,8 @@ class Mouse():
         self.pegar_carta(card_hold)
         self.soltar_carta()
         self.mana.logica()
+        return card_hold
+
     def exibir(self, win):
         if self.unidade is not None:
             win.blit(self.unidade, (self.x - 32, self.y - 32))

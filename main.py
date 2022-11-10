@@ -69,12 +69,13 @@ while rodando:
         mouse.logica(card_holder)
         win.blit(bg_img, (0, 0))
         card_holder.exibir(win)
+        card_holder.logica()
         mouse.exibir(win)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 jogando = False
             if event.type == pygame.MOUSEBUTTONDOWN:
-                mouse = entidades.invocar_tropa(x, y, tabuleiro, mouse)
+                mouse, card_holder = entidades.invocar_tropa(x, y, tabuleiro, mouse, card_holder)
             if event.type == pygame.KEYDOWN:
                 entidades.invocar_inimigos(x, y, tabuleiro)
         entidades.exibir(win)

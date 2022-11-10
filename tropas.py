@@ -19,7 +19,7 @@ class Tropas:
         self.tank_ss = Spritesheet(pygame.image.load('sprites/skeleto_tank.png').convert_alpha())
         self.mago_ss = Spritesheet(pygame.image.load('sprites/mage-001.png').convert_alpha())
         self.wave = 1
-    def invocar_tropa(self, x, y, tabuleiro, mouse):
+    def invocar_tropa(self, x, y, tabuleiro, mouse, card_hold):
         p = tabuleiro.invocar_em(x, y)
         if pygame.mouse.get_pressed()[0]:
             if mouse.id is not None:
@@ -32,6 +32,7 @@ class Tropas:
                                 mouse.unidade = None
                                 mouse.mana.mana_tamanho -= 60
                                 tabuleiro.blocos[p[2]][p[3]].tem_unidade = True
+                                card_hold.cartas[0].contador = card_hold.cartas[0].recarga
                         case 2:
                             if mouse.mana.mana_tamanho >= 40:
                                 mouse.id = None
@@ -39,6 +40,7 @@ class Tropas:
                                 self.matriz_tropas.append(Altar(p[0], p[1], 32, 32, self.altar_ss, 5, 2, p[2], p[3]))
                                 tabuleiro.blocos[p[2]][p[3]].tem_unidade = True
                                 mouse.mana.mana_tamanho -= 40
+                                card_hold.cartas[1].contador = card_hold.cartas[1].recarga
                         case 3:
                             if mouse.mana.mana_tamanho >= 60:
                                 mouse.id = None
@@ -46,7 +48,8 @@ class Tropas:
                                 self.matriz_tropas.append(Altar(p[0], p[1], 32, 32, self.tank_ss, 1, 1, p[2], p[3]))
                                 tabuleiro.blocos[p[2]][p[3]].tem_unidade = True
                                 mouse.mana.mana_tamanho -= 60
-        return mouse
+                                card_hold.cartas[2].contador = card_hold.cartas[2].recarga
+        return mouse, card_hold
 
 
     def invocar_inimigos(self, x, y, tabuleiro):

@@ -11,7 +11,7 @@ class Mago(Entidade):
     dano = 100
     vel_ataque = 60
     cooldown = 1
-    tijolo = pygame.transform.scale((pygame.image.load('sprites/sbrick.png')), (32, 32))
+    tijolo = pygame.transform.scale((pygame.image.load('sprites/fogo.png')), (32, 32))
     atirar = False
     lado = 1
 

@@ -7,11 +7,10 @@ class Esqueleto(Entidade):
     vida = 360
     vel_ataque = 90
     dano = 100
-    tijolo = pygame.transform.scale((pygame.image.load('sprites/sbrick.png')), (32, 32))
+    tijolo = pygame.transform.scale((pygame.image.load('sprites/sosso.png')), (32, 32))
     atirar = False
     cooldown = 7
     lado = 0
-
     def logica(self, matriz_inimigos, tabuleiro):
         if self.colodiu(matriz_inimigos, tabuleiro):
             self.atirar = True

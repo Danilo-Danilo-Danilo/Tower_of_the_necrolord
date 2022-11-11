@@ -4,9 +4,10 @@ from entidade import *
 
 class Esqueleto(Entidade):
     id = 1
-    vida = 360
-    vel_ataque = 90
-    dano = 100
+    vida = 240
+    vel_ataque = 15
+    dano_projetil = 40
+    vel_projetil = 30
     tijolo = pygame.transform.scale((pygame.image.load('sprites/sosso.png')), (32, 32))
     atirar = False
     cooldown = 7
@@ -44,11 +45,11 @@ class Esqueleto(Entidade):
     def atirando(self, projeteis):
         if self.cooldown > 0:
             self.cooldown += 1
-            if self.cooldown == 30:
+            if self.cooldown == self.vel_ataque:
                 self.cooldown = 0
         elif self.cooldown == 0:
             if self.atirar:
-                projetil = Projetil(self.tijolo, self.x + 10, self.y + 16, 30, 40, 0)
+                projetil = Projetil(self.tijolo, self.x + 10, self.y + 16, self.vel_projetil, self.dano_projetil, self.lado)
                 projeteis.ad_projetil(projetil)
                 self.cooldown += 1
         return projeteis

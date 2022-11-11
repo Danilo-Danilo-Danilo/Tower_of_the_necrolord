@@ -7,7 +7,6 @@ class Butao(Entidade):
 
     def logica(self, mx, my):
         self.clicou(mx, my)
-        print(self.ta_clicando)
 
     def clicou(self, x, y):
         if self.x  < x < self.x + self.largura*2:

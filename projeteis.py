@@ -16,7 +16,7 @@ class Projeteis:
                 self.projeteis.remove(projetil)
             projetil.movimento()
 
-    def colisao(self, matriz_inimigos):
+    def colisao(self, matriz_inimigos, matriz_tropas):
         for projetil in self.projeteis:
             for inimigo in matriz_inimigos:
                 if inimigo.lado != projetil.lado:
@@ -26,5 +26,13 @@ class Projeteis:
                             inimigo.vida -= projetil.dano
                             if inimigo.vida <= 0:
                                 matriz_inimigos.remove(inimigo)
+
+            for tropa in matriz_tropas:
+                if tropa.lado != projetil.lado:
+                    if (tropa.x <= projetil.x <= tropa.x + 64) and (tropa.y <= projetil.y <= tropa.y + 32):
+                        if projetil in self.projeteis:
+                            tropa.vida -= projetil.dano
+                            self.projeteis.remove(projetil)
+
         return matriz_inimigos
 

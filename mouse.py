@@ -18,7 +18,7 @@ class Mouse():
                 if carta.y < self.y < carta.y + carta.altura:
                     if pygame.mouse.get_pressed()[0]:
                         if self.unidade is None:
-                            if carta.contador == 0:
+                            if carta.contador <= 0:
                                 self.unidade = carta.sprite_un
                                 self.id = carta.id
 

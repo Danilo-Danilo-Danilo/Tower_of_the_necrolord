@@ -5,6 +5,7 @@ from ponto_invoc import *
 from cavaleiro import *
 from campo import *
 from mago import *
+from esqueleto_escudo import *
 
 
 class Tropas:
@@ -18,7 +19,7 @@ class Tropas:
         self.altar_ss = Spritesheet(pygame.image.load('sprites/altar_sprite.png').convert_alpha())
         self.tank_ss = Spritesheet(pygame.image.load('sprites/skeleto_tank.png').convert_alpha())
         self.mago_ss = Spritesheet(pygame.image.load('sprites/mage-001.png').convert_alpha())
-        self.wave = 1
+        self.wave = 0
     def invocar_tropa(self, x, y, tabuleiro, mouse, card_hold):
         p = tabuleiro.invocar_em(x, y)
         if pygame.mouse.get_pressed()[0]:
@@ -45,7 +46,7 @@ class Tropas:
                             if mouse.mana.mana_tamanho >= 60:
                                 mouse.id = None
                                 mouse.unidade = None
-                                self.matriz_tropas.append(Altar(p[0], p[1], 32, 32, self.tank_ss, 1, 1, p[2], p[3]))
+                                self.matriz_tropas.append(Esqueleto_Tank(p[0], p[1], 32, 32, self.tank_ss, 1, 1, p[2], p[3]))
                                 tabuleiro.blocos[p[2]][p[3]].tem_unidade = True
                                 mouse.mana.mana_tamanho -= 60
                                 card_hold.cartas[2].contador = card_hold.cartas[2].recarga
@@ -58,13 +59,19 @@ class Tropas:
             self.matriz_inimigos.append(Mago(p[0], p[1], 32, 32, self.mago_ss, 1, 1, p[2], p[3]))
 
     def spawn_inimigos(self, tempo, level):
-        if tempo == (90 * self.wave):
-            for i in range(level[self.wave]):
+        if self.wave <= len(level):
+            if level[self.wave] == tempo:
                 random.seed()
                 a = random.randint(0, 5)
                 y = (a * 64) + 118
-                self.matriz_inimigos.append(Cavaleiro(780, y, 32, 32, self.cava_ss, 4, 1, a + 1, 14 ))
-                self.wave += 1
+                id_in = 0
+                match id_in:
+                    case 0:
+                        self.matriz_inimigos.append(Cavaleiro(780, y, 32, 32, self.cava_ss, 4, 1, a + 1, 14 ))
+                        self.wave += 1
+                    case 1:
+                        self.matriz_inimigos.append(Mago(780, y, 32, 32, self.mago_ss, 1, 1, a + 1, 14))
+                        self.wave += 1
     def exibir(self, win):
         for i in self.matriz_tropas:
             i.exibir(win)
@@ -74,7 +81,7 @@ class Tropas:
     def logica(self, mouse):
         for i in self.matriz_inimigos:
             if i.x + 64 <= 0:
-                print("Tu perdeu chefia")
+                a = i
         for i in self.matriz_tropas:
             if i.id == 2:
                 i.logica(mouse)

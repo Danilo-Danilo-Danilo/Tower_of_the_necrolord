@@ -9,7 +9,6 @@ rodando = True
 jogando = False
 creditos_tela = False
 como_tela = False
-
 while rodando:
     win = pygame.display.set_mode((768, 512))
     pygame.display.set_caption("Tower of the Necrolord!")
@@ -25,9 +24,11 @@ while rodando:
     card_holder = Card_Holder(3)
     tempo = 1
     level_1 = [1, 1, 1, 2, 2, 2, 3, 4, 6, 8]
+    lvl_1 = [240,552,888,1008,1092,1248,1260,1548,1584,1740,1742,1752,1980,1982,2100,2112,2436,2484,2496,2498,2508,2510,2520,2522]
     mx, my = pygame.mouse.get_pos()
     menu.logica(mx, my)
     menu.exibir(win)
+    pygame.mixer.music.load('music/Graze the Roof.mp3')
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             rodando = False
@@ -36,6 +37,7 @@ while rodando:
                 if i.ta_clicando:
                     if i.id == 1:
                         jogando = True
+                        pygame.mixer.music.play(-1, 0, 0)
                     if i.id == 2:
                         creditos_tela = True
                     if i.id == 3:
@@ -62,7 +64,7 @@ while rodando:
                 como_tela = False
 
     while jogando:
-        entidades.spawn_inimigos(tempo, level_1)
+        entidades.spawn_inimigos(tempo, lvl_1)
         entidades.logica(mouse)
         projeteis = entidades.atirar(projeteis)
         x, y = pygame.mouse.get_pos()
@@ -80,11 +82,9 @@ while rodando:
                 entidades.invocar_inimigos(x, y, tabuleiro)
         entidades.exibir(win)
         projeteis.exibir(win)
-        entidades.matriz_inimigos = projeteis.colisao(entidades.matriz_inimigos)
-        entidades.matriz_tropas = projeteis.colisao(entidades.matriz_tropas)
+        entidades.matriz_inimigos = projeteis.colisao(entidades.matriz_inimigos, entidades.matriz_tropas)
         for i in entidades.matriz_inimigos:
             entidades.matriz_tropas = i.atacar(entidades.matriz_tropas)
-
         tempo += 1
         pygame.time.delay(60)
         pygame.display.update()

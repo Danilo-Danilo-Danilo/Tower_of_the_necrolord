@@ -8,7 +8,8 @@ class Mago(Entidade):
     id = 2
     vida = 200
     velocidade = 2
-    dano = 100
+    dano_projetil = 120
+    vel_projetil = -30
     vel_ataque = 60
     cooldown = 1
     tijolo = pygame.transform.scale((pygame.image.load('sprites/fogo.png')), (32, 32))
@@ -29,6 +30,7 @@ class Mago(Entidade):
         win.blit(self.animacoes[0][int(self.frame)], (self.x, self.y))
 
     def colodiu(self, matriz_tropas):
+        en_counter = 0
         if len(matriz_tropas) == 0:
             self.atirar = False
         for esq in matriz_tropas:
@@ -37,6 +39,8 @@ class Mago(Entidade):
             y0 = esq.y
             y1 = esq.y + (esq.altura * 2)
             if y0 - 2 <= self.y <= y1 - 2:
+                en_counter += 1
+            if en_counter > 0:
                 self.atirar = True
             else:
                 self.atirar = False
@@ -55,7 +59,7 @@ class Mago(Entidade):
     def atirando(self, projeteis):
         if self.cooldown == 0:
             if self.atirar:
-                projetil = Projetil(self.tijolo, self.x + 10, self.y + 16, -30, 40, 1)
+                projetil = Projetil(self.tijolo, self.x + 10, self.y + 16, self.vel_projetil, self.dano_projetil, self.lado)
                 projeteis.ad_projetil(projetil)
                 self.cooldown += 1
         return projeteis

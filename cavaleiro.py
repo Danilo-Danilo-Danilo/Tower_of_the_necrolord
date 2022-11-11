@@ -7,7 +7,7 @@ class Cavaleiro(Entidade):
     id = 1
     vida = 400
     velocidade = 2
-    dano = 100
+    dano = 60
     vel_ataque = 60
     cooldown_ataque = 0
     lado = 1

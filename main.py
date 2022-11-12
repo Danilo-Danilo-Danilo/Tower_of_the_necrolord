@@ -26,8 +26,7 @@ while rodando:
     level_1 = [1, 1, 1, 2, 2, 2, 3, 4, 6, 8]
     lvl_1 = [240,552,888,1008,1092,1248,1260,1548,1584,1740,1742,1752,1980,1982,2100,2112,2436,2484,2496,2498,2508,2510,2520,2522]
     mx, my = pygame.mouse.get_pos()
-    menu.logica(mx, my)
-    menu.exibir(win)
+    menu.logica(mx, my, como_tela, creditos_tela)
     pygame.mixer.music.load('music/Graze the Roof.mp3')
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -38,30 +37,29 @@ while rodando:
                     if i.id == 1:
                         jogando = True
                         pygame.mixer.music.play(-1, 0, 0)
+                        menu.logica(mx, my, como_tela, creditos_tela)
+                        pygame.display.update()
                     if i.id == 2:
                         creditos_tela = True
+                        menu.logica(mx, my, como_tela, creditos_tela)
+                        pygame.display.update()
                     if i.id == 3:
                         como_tela = True
+                        menu.logica(mx, my, como_tela, creditos_tela)
+                        pygame.display.update()
+                    if i.id == 4:
+                        creditos_tela = False
+                        menu.logica(mx, my, como_tela, creditos_tela)
+                        menu.exibir(win, como_tela, creditos_tela)
+                        pygame.display.update()
+                    if i.id == 5:
+                        como_tela = False
+                        menu.logica(mx, my, como_tela, creditos_tela)
+                        menu.exibir(win, como_tela, creditos_tela)
+                        pygame.display.update()
+    menu.exibir(win, como_tela, creditos_tela)
     pygame.time.delay(60)
     pygame.display.update()
-
-    while creditos_tela:
-        win.blit(creditos, (0, 0))
-        pygame.display.update()
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                rodando = False
-            if event.type == pygame.KEYDOWN:
-                creditos_tela = False
-
-    while como_tela:
-        win.blit(como, (0, 0))
-        pygame.display.update()
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                rodando = False
-            if event.type == pygame.KEYDOWN:
-                como_tela = False
 
     while jogando:
         entidades.spawn_inimigos(tempo, lvl_1)

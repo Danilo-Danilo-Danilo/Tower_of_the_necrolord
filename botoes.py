@@ -6,7 +6,10 @@ class Butao(Entidade):
     ta_clicando = False
 
     def logica(self, mx, my):
-        self.clicou(mx, my)
+        if self.clicou(mx, my):
+            self.frame = 1
+        else:
+            self.frame = 0
 
     def clicou(self, x, y):
         if self.x  < x < self.x + self.largura*2:

@@ -90,7 +90,9 @@ while rodando:
         pygame.display.update()
         if concluiu:
             if lvl[0] == 0:
-                #mostra a tela de ir pro nivel 2
-            if lvl[1] == 1:
-                #ganhou o nivel 2 tela de venceu
+                # mostra a tela de ir pro nivel 2
+                jogando = False
+            if lvl[0] == 1:
+                # ganhou o nivel 2 tela de venceu
+                jogando = False
             jogando = False

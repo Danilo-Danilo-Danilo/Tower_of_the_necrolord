@@ -22,9 +22,11 @@ while rodando:
     mouse = Mouse()
     projeteis = Projeteis()
     card_holder = Card_Holder(3)
-    tempo = 1
-    level_1 = [1, 1, 1, 2, 2, 2, 3, 4, 6, 8]
-    lvl_1 = [240,552,888,1008,1092,1248,1260,1548,1584,1740,1742,1752,1980,1982,2100,2112,2436,2484,2496,2498,2508,2510,2520,2522]
+    lvl_1 = [0,240,552,888,1008,1092,1248,1260,1548,1584,1740,1742,1752,1980,
+             1982,2100,2112,2436,2484,2496,2498,2508,2510,2520,2522]
+    lvl_2 = [1,180,340,460,520,580,700,743,751,820,888,912,925,978,984,1008,1064,1092,1120,1245,1248,1260,
+             1345,1444,1488,1548,1584,1688,1700,1740,1742,1752,1794,1821,1865,1922,1964,1980,1982,2012,2022,
+             2100,2112,2212,2268,2348,2401,2436,2455,2484,2496,2498,2508,2510,2512,2516,2518,2520,2522,2524,2533,2540]
     mx, my = pygame.mouse.get_pos()
     menu.logica(mx, my, como_tela, creditos_tela)
     pygame.mixer.music.load('music/Graze the Roof.mp3')
@@ -37,6 +39,7 @@ while rodando:
                     if i.id == 1:
                         jogando = True
                         pygame.mixer.music.play(-1, 0, 0)
+                        lvl = lvl_2
                         menu.logica(mx, my, como_tela, creditos_tela)
                         pygame.display.update()
                     if i.id == 2:
@@ -62,7 +65,7 @@ while rodando:
     pygame.display.update()
 
     while jogando:
-        entidades.spawn_inimigos(tempo, lvl_1)
+        concluiu = entidades.spawn_inimigos(lvl)
         entidades.logica(mouse)
         projeteis = entidades.atirar(projeteis)
         x, y = pygame.mouse.get_pos()
@@ -83,6 +86,11 @@ while rodando:
         entidades.matriz_inimigos = projeteis.colisao(entidades.matriz_inimigos, entidades.matriz_tropas)
         for i in entidades.matriz_inimigos:
             entidades.matriz_tropas = i.atacar(entidades.matriz_tropas)
-        tempo += 1
         pygame.time.delay(60)
         pygame.display.update()
+        if concluiu:
+            if lvl[0] == 0:
+                #mostra a tela de ir pro nivel 2
+            if lvl[1] == 1:
+                #ganhou o nivel 2 tela de venceu
+            jogando = False

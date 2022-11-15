@@ -8,7 +8,7 @@ class Cavaleiro(Entidade):
     vida = 400
     velocidade = 2
     dano = 60
-    vel_ataque = 60
+    vel_ataque = 20
     cooldown_ataque = 0
     lado = 1
     def logica(self, matriz_tropas):

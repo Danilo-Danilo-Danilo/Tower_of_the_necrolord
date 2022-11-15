@@ -19,7 +19,8 @@ class Tropas:
         self.altar_ss = Spritesheet(pygame.image.load('sprites/altar_sprite.png').convert_alpha())
         self.tank_ss = Spritesheet(pygame.image.load('sprites/skeleto_tank.png').convert_alpha())
         self.mago_ss = Spritesheet(pygame.image.load('sprites/mage-001.png').convert_alpha())
-        self.wave = 0
+        self.wave = 1
+        self.tempo = 0
     def invocar_tropa(self, x, y, tabuleiro, mouse, card_hold):
         p = tabuleiro.invocar_em(x, y)
         if pygame.mouse.get_pressed()[0]:
@@ -58,13 +59,14 @@ class Tropas:
         if p is not None:
             self.matriz_inimigos.append(Mago(p[0], p[1], 32, 32, self.mago_ss, 1, 1, p[2], p[3]))
 
-    def spawn_inimigos(self, tempo, level):
-        if self.wave <= len(level):
-            if level[self.wave] == tempo:
+    def spawn_inimigos(self, level):
+        concluiu = False
+        if self.wave < len(level):
+            if level[self.wave] == self.tempo:
                 random.seed()
                 a = random.randint(0, 5)
                 y = (a * 64) + 118
-                id_in = 0
+                id_in = random.randint(0, level[0])
                 match id_in:
                     case 0:
                         self.matriz_inimigos.append(Cavaleiro(780, y, 32, 32, self.cava_ss, 4, 1, a + 1, 14 ))
@@ -72,6 +74,12 @@ class Tropas:
                     case 1:
                         self.matriz_inimigos.append(Mago(780, y, 32, 32, self.mago_ss, 1, 1, a + 1, 14))
                         self.wave += 1
+        if self.wave == len(level) and len(self.matriz_inimigos) == 0:
+            concluiu = True
+
+        self.tempo += 1
+
+        return concluiu
     def exibir(self, win):
         for i in self.matriz_tropas:
             i.exibir(win)

@@ -42,24 +42,28 @@ class Menu:
             if creditos_tela:
                 self.botoes_voltar.append(Butao(2, 460, 64, 32, self.botaoti, 2, 1, 1, 1, 1))
                 self.botoes_voltar[0].id = 4
-            if como_tela:
+            elif como_tela:
                 self.botoes_voltar.append(Butao(2, 460, 64, 32, self.botaoti, 2, 1, 1, 1, 1))
                 self.botoes_voltar[0].id = 4
                 self.botoes_voltar.append(Butao(702, 460, 64, 32, self.botaot, 2, 1, 1, 1, 1))
                 self.botoes_voltar[1].id = 5
-            if proximo_tela:
+            elif proximo_tela:
                 self.botoes_proximo.append(Butao(320, 301, 64, 32, self.botao, 2, 1, 1, 1, 2))
                 self.botoes_proximo[0].id = 6
                 self.botoes_proximo.append(Butao(320, 381, 64, 32, self.botao, 2, 1, 1, 1, 2))
                 self.botoes_proximo[1].id = 7
-            if game_over_tela:
+            elif game_over_tela:
                 self.botoes_gameover.append(Butao(320, 301, 64, 32, self.botao, 2, 1, 1, 1, 2))
                 self.botoes_gameover[0].id = 8
                 self.botoes_gameover.append(Butao(320, 381, 64, 32, self.botao, 2, 1, 1, 1, 2))
                 self.botoes_gameover[1].id = 9
-            if ganhou_tela:
+            elif ganhou_tela:
                 self.botoes_ganhou.append(Butao(320, 301, 64, 32, self.botao, 2, 1, 1, 1, 2))
                 self.botoes_ganhou[0].id = 10
+            else:
+                self.botoes_ganhou.clear()
+                self.botoes_voltar.clear()
+                self.botoes_gameover.clear()
 
         if self.frame >= len(self.animacoes[0]) - 1:
             self.frame = 0

@@ -47,14 +47,17 @@ while rodando:
                         pygame.mixer.music.play(-1, 0, 0)
                         menu.logica(mx, my, como_tela, creditos_tela, proximo_tela, game_over_tela, ganhou_tela)
                         pygame.display.update()
+                        i.ta_clicando = False
                     if i.id == 2:
                         creditos_tela = True
                         menu.logica(mx, my, como_tela, creditos_tela, proximo_tela, game_over_tela, ganhou_tela)
                         pygame.display.update()
+                        i.ta_clicando = False
                     if i.id == 3:
                         como_tela = True
                         menu.logica(mx, my, como_tela, creditos_tela, proximo_tela, game_over_tela, ganhou_tela)
                         pygame.display.update()
+                        i.ta_clicando = False
             for i in menu.botoes_voltar:
                 if i.ta_clicando:
                     if i.id == 4:
@@ -62,52 +65,63 @@ while rodando:
                             creditos_tela = False
                             como_tela = False
                             menu.botoes_voltar.clear()
+                            i.ta_clicando = False
                     if i.id == 5:
                         if tela < 2:
                             tela += 1
                         elif tela == 2:
                             tela = 0
+                            i.ta_clicando = False
             if proximo_tela:
                 for i in menu.botoes_proximo:
                     if i.ta_clicando:
                         if i.id == 6:
                             lvl = lvl_2
+                            pygame.mixer.music.play(-1, 0, 0)
                             proximo_tela = False
                             jogando = True
                             como_tela = False
                             creditos_tela = False
                             game_over_tela = False
+                            i.ta_clicando = False
                         if i.id == 7:
                             proximo_tela = False
                             jogando = False
                             como_tela = False
                             creditos_tela = False
                             game_over_tela = False
+                            i.ta_clicando = False
             if game_over_tela:
                 for i in menu.botoes_gameover:
                     if i.ta_clicando:
                         if i.id == 8:
+                            pygame.mixer.music.play(-1, 0, 0)
                             proximo_tela = False
                             jogando = True
                             como_tela = False
                             creditos_tela = False
                             game_over_tela = False
+                            i.ta_clicando = False
                         if i.id == 9:
                             proximo_tela = False
                             jogando = False
                             como_tela = False
                             creditos_tela = False
                             game_over_tela = False
+                            i.ta_clicando = False
             if ganhou_tela:
                 for i in menu.botoes_ganhou:
                     if i.ta_clicando:
                         if i.id == 10:
                             lvl = lvl_1
+                            ganhou_tela = False
                             proximo_tela = False
                             jogando = False
                             como_tela = False
                             creditos_tela = False
                             game_over_tela = False
+                            i.ta_clicando = False
+
     pygame.time.delay(60)
     pygame.display.update()
 

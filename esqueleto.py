@@ -6,7 +6,7 @@ class Esqueleto(Entidade):
     id = 1
     vida = 240
     vel_ataque = 15
-    dano_projetil = 40
+    dano_projetil = 800000
     vel_projetil = 30
     tijolo = pygame.transform.scale((pygame.image.load('sprites/sosso.png')), (32, 32))
     atirar = False

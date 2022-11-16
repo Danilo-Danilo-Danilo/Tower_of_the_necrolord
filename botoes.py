@@ -12,8 +12,8 @@ class Butao(Entidade):
             self.frame = 0
 
     def clicou(self, x, y):
-        if self.x  < x < self.x + self.largura*2:
-            if self.y < y < self.y + self.altura*2:
+        if self.x  < x < self.x + self.largura * self.escala:
+            if self.y < y < self.y + self.altura * self.escala:
                 self.ta_clicando = True
                 return True
         self.ta_clicando = False

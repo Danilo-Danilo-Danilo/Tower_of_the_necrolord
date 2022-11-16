@@ -71,8 +71,8 @@ class Menu:
                     self.botoes_proximo[1].id = 7
             elif game_over_tela:
                 if self.botoes_gameover == []:
-                    self.botoes_gameover.append(Butao(320, 301, 64, 32, self.botao, 2, 1, 1, 1, 2, "Novamente"))
-                    self.botoes_gameover[0].larguratxt = 10
+                    self.botoes_gameover.append(Butao(320, 301, 64, 32, self.botao, 2, 1, 1, 1, 2, "Retry"))
+                    self.botoes_gameover[0].larguratxt = 32
                     self.botoes_gameover[0].alturatxt = 16
                     self.botoes_gameover[0].id = 8
                     self.botoes_gameover.append(Butao(320, 381, 64, 32, self.botao, 2, 1, 1, 1, 2, "Menu"))

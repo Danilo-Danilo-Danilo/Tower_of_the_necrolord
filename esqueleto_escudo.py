@@ -2,7 +2,7 @@ from entidade import *
 
 class Esqueleto_Tank(Entidade):
     id = 3
-    vida = 720
+    vida = 4320
     lado = 0
 
     def logica(self, matriz_inimigos, tabuleiro):

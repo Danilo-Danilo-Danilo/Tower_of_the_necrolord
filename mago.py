@@ -6,7 +6,7 @@ import pygame
 
 class Mago(Entidade):
     id = 2
-    vida = 200
+    vida = 160
     velocidade = 2
     dano_projetil = 120
     vel_projetil = -30

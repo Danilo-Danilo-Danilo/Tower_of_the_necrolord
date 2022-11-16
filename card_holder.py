@@ -13,9 +13,9 @@ class Card_Holder():
         carta_tank = pygame.transform.scale(pygame.image.load('sprites/card-tank.png'), (64, 64))
         self.overlay = pygame.transform.scale(pygame.image.load('sprites/carregando.png'), (64, 64))
         self.cartas = []
-        self.cartas.append(Carta(carta_esqueleto, esqueleto_sprite, 1, 64, 0.66))
-        self.cartas.append(Carta(carta_altar, altar_sprite, 2, 64, 0.66))
-        self.cartas.append(Carta(carta_tank, tank_sprite, 3, 64, 0.17))
+        self.cartas.append(Carta(carta_esqueleto, esqueleto_sprite, 1, 64, 0.70))
+        self.cartas.append(Carta(carta_altar, altar_sprite, 2, 64, 0.70))
+        self.cartas.append(Carta(carta_tank, tank_sprite, 3, 64, 0.25))
 
         for i in range(len(self.cartas)):
             self.cartas[i].x = (10 + (i * 70))

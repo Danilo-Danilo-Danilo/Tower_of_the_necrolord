@@ -21,6 +21,7 @@ class Menu:
         self.como.append(pygame.transform.scale(pygame.image.load('sprites/regras.png'), (768, 512)))
         self.como.append(pygame.transform.scale(pygame.image.load('sprites/regras_2.png'), (768, 512)))
         self.como.append(pygame.transform.scale(pygame.image.load('sprites/regras_3.png'), (768, 512)))
+        self.menu = pygame.transform.scale(pygame.image.load('sprites/fundo.png'), (768, 512))
         self.font = pygame.font.Font('font/alagard.ttf', 32)
         self.white = (255, 255, 255)
         self.text = self.font.render("Nivel Concluido", True, self.white)
@@ -134,6 +135,7 @@ class Menu:
             for i in self.botoes_ganhou:
                 i.exibir(win)
         else:
+            win.blit(self.menu, (0, 0))
             win.blit(self.animacoes[0][int(self.frame)], (0, 0))
             for i in self.todos_botoes:
                 i.exibir(win)

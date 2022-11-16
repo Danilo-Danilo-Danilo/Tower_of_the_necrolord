@@ -3,7 +3,7 @@ from spritesheet import *
 import pygame
 
 class Entidade(ABC):
-    def __init__(self, x, y, largura, altura, sprites, max_frames, max_linhas, linha, coluna, escala):
+    def __init__(self, x, y, largura, altura, sprites, max_frames, max_linhas, linha, coluna, escala, textobt):
         self.x = x
         self.y = y
         self.largura = largura
@@ -13,6 +13,10 @@ class Entidade(ABC):
         self.coluna = coluna
         self.animacoes = []
         self.escala = escala
+        self.font = pygame.font.Font('font/alagard.ttf', 28)
+        self.white = (255, 255, 255)
+        self.textobt = textobt
+        self.text = self.font.render(self.textobt, True, self.white)
         for i in range(max_linhas):
             sprites_vetor = []
             for j in range(max_frames):

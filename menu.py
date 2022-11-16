@@ -33,33 +33,58 @@ class Menu:
             self.animacoes.append(sprites_vetor)
         self.todos_botoes = []
         for i in range(3):
-            self.todos_botoes.append(Butao(320, 201+(i*80), 64, 32, self.botao, 2, 1, 1, 1, 2))
+            if i == 0:
+                self.todos_botoes.append(Butao(320, 201 + (i * 80), 64, 32, self.botao, 2, 1, 1, 1, 2, "Jogar"))
+                self.todos_botoes[i].larguratxt = 32
+                self.todos_botoes[i].alturatxt = 16
+            elif i == 1:
+                self.todos_botoes.append(Butao(320, 201 + (i * 80), 64, 32, self.botao, 2, 1, 1, 1, 2, "Creditos"))
+                self.todos_botoes[i].larguratxt = 10
+                self.todos_botoes[i].alturatxt = 16
+            elif i == 2:
+                self.todos_botoes.append(Butao(320, 201 + (i * 80), 64, 32, self.botao, 2, 1, 1, 1, 2, "Tutorial"))
+                self.todos_botoes[i].larguratxt = 10
+                self.todos_botoes[i].alturatxt = 16
             self.todos_botoes[i].id = 1+i
+
 
 
     def logica(self, mx, my, como_tela, creditos_tela, proximo_tela, game_over_tela, ganhou_tela):
         if creditos_tela or como_tela or proximo_tela or game_over_tela or ganhou_tela:
             if creditos_tela:
-                self.botoes_voltar.append(Butao(2, 460, 64, 32, self.botaoti, 2, 1, 1, 1, 1))
+                self.botoes_voltar.append(Butao(2, 460, 64, 32, self.botaoti, 2, 1, 1, 1, 1, ""))
                 self.botoes_voltar[0].id = 4
             elif como_tela:
-                self.botoes_voltar.append(Butao(2, 460, 64, 32, self.botaoti, 2, 1, 1, 1, 1))
+                self.botoes_voltar.append(Butao(2, 460, 64, 32, self.botaoti, 2, 1, 1, 1, 1, ''))
                 self.botoes_voltar[0].id = 4
-                self.botoes_voltar.append(Butao(702, 460, 64, 32, self.botaot, 2, 1, 1, 1, 1))
+                self.botoes_voltar.append(Butao(702, 460, 64, 32, self.botaot, 2, 1, 1, 1, 1, ''))
                 self.botoes_voltar[1].id = 5
             elif proximo_tela:
-                self.botoes_proximo.append(Butao(320, 301, 64, 32, self.botao, 2, 1, 1, 1, 2))
-                self.botoes_proximo[0].id = 6
-                self.botoes_proximo.append(Butao(320, 381, 64, 32, self.botao, 2, 1, 1, 1, 2))
-                self.botoes_proximo[1].id = 7
+                if self.botoes_proximo == []:
+                    self.botoes_proximo.append(Butao(320, 301, 64, 32, self.botao, 2, 1, 1, 1, 2, "Nivel 2"))
+                    self.botoes_proximo[0].larguratxt = 20
+                    self.botoes_proximo[0].alturatxt = 16
+                    self.botoes_proximo[0].id = 6
+                    self.botoes_proximo.append(Butao(320, 381, 64, 32, self.botao, 2, 1, 1, 1, 2, "Menu"))
+                    self.botoes_proximo[1].larguratxt = 28
+                    self.botoes_proximo[1].alturatxt = 16
+                    self.botoes_proximo[1].id = 7
             elif game_over_tela:
-                self.botoes_gameover.append(Butao(320, 301, 64, 32, self.botao, 2, 1, 1, 1, 2))
-                self.botoes_gameover[0].id = 8
-                self.botoes_gameover.append(Butao(320, 381, 64, 32, self.botao, 2, 1, 1, 1, 2))
-                self.botoes_gameover[1].id = 9
+                if self.botoes_gameover == []:
+                    self.botoes_gameover.append(Butao(320, 301, 64, 32, self.botao, 2, 1, 1, 1, 2, "Novamente"))
+                    self.botoes_gameover[0].larguratxt = 10
+                    self.botoes_gameover[0].alturatxt = 16
+                    self.botoes_gameover[0].id = 8
+                    self.botoes_gameover.append(Butao(320, 381, 64, 32, self.botao, 2, 1, 1, 1, 2, "Menu"))
+                    self.botoes_gameover[1].larguratxt = 28
+                    self.botoes_gameover[1].alturatxt = 16
+                    self.botoes_gameover[1].id = 9
             elif ganhou_tela:
-                self.botoes_ganhou.append(Butao(320, 301, 64, 32, self.botao, 2, 1, 1, 1, 2))
-                self.botoes_ganhou[0].id = 10
+                if self.botoes_ganhou == []:
+                    self.botoes_ganhou.append(Butao(320, 301, 64, 32, self.botao, 2, 1, 1, 1, 2, "Menu"))
+                    self.botoes_ganhou[0].larguratxt = 28
+                    self.botoes_ganhou[0].alturatxt = 16
+                    self.botoes_ganhou[0].id = 10
             else:
                 self.botoes_ganhou.clear()
                 self.botoes_voltar.clear()

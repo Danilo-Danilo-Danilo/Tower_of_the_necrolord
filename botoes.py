@@ -1,9 +1,13 @@
+import pygame.font
+
 from entidade import *
 from pygame import *
 
 class Butao(Entidade):
     id = 0
     ta_clicando = False
+    larguratxt = 0
+    alturatxt = 0
 
     def logica(self, mx, my):
         if self.clicou(mx, my):
@@ -21,3 +25,4 @@ class Butao(Entidade):
 
     def exibir(self, win):
         win.blit(self.animacoes[0][int(self.frame)], (self.x, self.y))
+        win.blit(self.text, (self.x + self.larguratxt, self.y + self.alturatxt))

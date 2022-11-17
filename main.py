@@ -25,6 +25,8 @@ lvl_2 = [1,180,340,500,700,751,820,912,978,984,1092,1120,1245,1260,
              2100,2112,2212,2348,2401,2436,2455,2496,2510,2516,2518,2520,2522,2524,2540]
 #lvl_2 = [1, 40]
 lvl = lvl_1
+pygame.mixer.music.load('music/Overdose.mp3')
+pygame.mixer.music.play(-1, 0, 0)
 tela = 0
 while rodando:
     tabuleiro = Campo(12, 6, 50, 128)
@@ -34,8 +36,9 @@ while rodando:
     card_holder = Card_Holder(3)
     mx, my = pygame.mouse.get_pos()
     menu.logica(mx, my, como_tela, creditos_tela, proximo_tela, game_over_tela, ganhou_tela)
-    pygame.mixer.music.load('music/Graze the Roof.mp3')
+
     menu.exibir(win, como_tela, creditos_tela, tela, proximo_tela, game_over_tela, ganhou_tela)
+
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             rodando = False
@@ -44,6 +47,7 @@ while rodando:
                 if i.ta_clicando:
                     if i.id == 1:
                         jogando = True
+                        pygame.mixer.music.load('music/Graze the Roof.mp3')
                         pygame.mixer.music.play(-1, 0, 0)
                         menu.logica(mx, my, como_tela, creditos_tela, proximo_tela, game_over_tela, ganhou_tela)
                         pygame.display.update()
@@ -77,6 +81,7 @@ while rodando:
                     if i.ta_clicando:
                         if i.id == 6:
                             lvl = lvl_2
+                            pygame.mixer.music.load('music/Graze the Roof.mp3')
                             pygame.mixer.music.play(-1, 0, 0)
                             proximo_tela = False
                             jogando = True
@@ -85,6 +90,8 @@ while rodando:
                             game_over_tela = False
                             i.ta_clicando = False
                         if i.id == 7:
+                            pygame.mixer.music.load('music/Overdose.mp3')
+                            pygame.mixer.music.play(-1, 0, 0)
                             proximo_tela = False
                             jogando = False
                             como_tela = False
@@ -95,6 +102,7 @@ while rodando:
                 for i in menu.botoes_gameover:
                     if i.ta_clicando:
                         if i.id == 8:
+                            pygame.mixer.music.load('music/Graze the Roof.mp3')
                             pygame.mixer.music.play(-1, 0, 0)
                             proximo_tela = False
                             jogando = True
@@ -103,6 +111,8 @@ while rodando:
                             game_over_tela = False
                             i.ta_clicando = False
                         if i.id == 9:
+                            pygame.mixer.music.load('music/Overdose.mp3')
+                            pygame.mixer.music.play(-1, 0, 0)
                             proximo_tela = False
                             jogando = False
                             como_tela = False
@@ -113,6 +123,8 @@ while rodando:
                 for i in menu.botoes_ganhou:
                     if i.ta_clicando:
                         if i.id == 10:
+                            pygame.mixer.music.load('music/Overdose.mp3')
+                            pygame.mixer.music.play(-1, 0, 0)
                             lvl = lvl_1
                             ganhou_tela = False
                             proximo_tela = False
@@ -137,6 +149,8 @@ while rodando:
         mouse.exibir(win)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
+                pygame.mixer.music.load('music/Overdose.mp3')
+                pygame.mixer.music.play(-1, 0, 0)
                 jogando = False
                 lvl = lvl_1
             if event.type == pygame.MOUSEBUTTONDOWN:

@@ -16,8 +16,9 @@ class Menu:
         self.botoes_ganhou = []
         self.frame = 0
         self.tela = 0
-        self.creditos = pygame.image.load('sprites/creditos_msm.png').convert_alpha()
+        self.creditos = pygame.image.load('sprites/CREDITOS.png').convert_alpha()
         self.como = []
+        self.titulo = Spritesheet(pygame.image.load('sprites/ss_titulo.png').convert_alpha())
         self.como.append(pygame.transform.scale(pygame.image.load('sprites/regras.png'), (768, 512)))
         self.como.append(pygame.transform.scale(pygame.image.load('sprites/regras_2.png'), (768, 512)))
         self.como.append(pygame.transform.scale(pygame.image.load('sprites/regras_3.png'), (768, 512)))
@@ -33,7 +34,7 @@ class Menu:
                 sprites_vetor.append(self.fundo_ss.recortar_imagem(i, j, self.largura, self.altura, 1))
             self.animacoes.append(sprites_vetor)
         self.todos_botoes = []
-        for i in range(3):
+        for i in range(4):
             if i == 0:
                 self.todos_botoes.append(Butao(320, 201 + (i * 80), 64, 32, self.botao, 2, 1, 1, 1, 2, "Jogar"))
                 self.todos_botoes[i].larguratxt = 32
@@ -46,6 +47,8 @@ class Menu:
                 self.todos_botoes.append(Butao(320, 201 + (i * 80), 64, 32, self.botao, 2, 1, 1, 1, 2, "Tutorial"))
                 self.todos_botoes[i].larguratxt = 10
                 self.todos_botoes[i].alturatxt = 16
+            elif i == 3:
+                self.todos_botoes.append(Butao(192, 10, 128, 64, self.titulo, 2, 1, 1, 1, 3, ""))
             self.todos_botoes[i].id = 1+i
 
 

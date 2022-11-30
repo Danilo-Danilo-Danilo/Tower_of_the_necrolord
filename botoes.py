@@ -1,7 +1,8 @@
 import pygame.font
 
 from entidade import *
-from pygame import *
+import pygame
+
 
 class Butao(Entidade):
     id = 0

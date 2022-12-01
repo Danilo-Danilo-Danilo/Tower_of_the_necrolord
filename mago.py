@@ -1,6 +1,5 @@
-from spritesheet import *
-from entidade import *
-from tropas import *
+from spritesheet import Spritesheet
+from entidade import Entidade
 import pygame
 
 

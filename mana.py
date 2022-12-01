@@ -1,5 +1,5 @@
 import pygame
-from entidade import *
+from entidade import Entidade
 
 class Mana():
     def __init__(self, x, y):

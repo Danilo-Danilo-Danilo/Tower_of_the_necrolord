@@ -1,4 +1,4 @@
-from ponto_invoc import *
+from ponto_invoc import Lugar
 
 class Campo:
     def __init__(self, largura, altura, x, y):

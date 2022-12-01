@@ -1,4 +1,4 @@
-from tropas import *
+
 class Carta():
     def __init__(self, sprite, sprite_un, id, recarga, taxa_de_recarga):
         self.id = id

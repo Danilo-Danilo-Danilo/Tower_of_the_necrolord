@@ -1,4 +1,4 @@
-import pygame
+
 
 class Projetil():
     def __init__(self, sprite, x, y, vel, dano, lado):

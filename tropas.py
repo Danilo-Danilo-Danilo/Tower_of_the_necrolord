@@ -1,11 +1,12 @@
 import random
-from altar import *
-from esqueleto import *
-from ponto_invoc import *
-from cavaleiro import *
-from campo import *
-from mago import *
-from esqueleto_escudo import *
+from altar import Altar
+from esqueleto import Esqueleto
+from cavaleiro import Cavaleiro
+from campo import Campo
+from mago import Mago
+from spritesheet import Spritesheet
+from esqueleto_escudo import Esqueleto_Tank
+import pygame
 
 
 class Tropas:

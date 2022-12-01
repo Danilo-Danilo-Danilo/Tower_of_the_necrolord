@@ -1,8 +1,7 @@
-from esqueleto import *
-from campo import *
-from card_holder import *
-from carta import *
-from mana import *
+from esqueleto import Esqueleto
+from campo import Campo
+from card_holder import Card_Holder
+from mana import Mana
 import pygame
 
 class Mouse():

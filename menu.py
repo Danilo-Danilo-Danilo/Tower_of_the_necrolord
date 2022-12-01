@@ -1,6 +1,6 @@
-from botoes import *
-from spritesheet import *
-
+from botoes import Butao
+from spritesheet import Spritesheet
+import pygame
 class Menu:
     def __init__(self, largura, altura):
         self.largura = largura

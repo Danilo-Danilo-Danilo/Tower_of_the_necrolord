@@ -1,6 +1,6 @@
-from projetil import *
+from projetil import Projetil
 import pygame
-from entidade import *
+from entidade import Entidade
 
 class Esqueleto(Entidade):
     id = 1
@@ -13,18 +13,11 @@ class Esqueleto(Entidade):
     cooldown = 7
     lado = 0
     def logica(self, matriz_inimigos, tabuleiro):
-        if self.colodiu(matriz_inimigos, tabuleiro):
-            self.atirar = True
-            if self.frame >= len(self.animacoes[1]) - 1:
-                self.frame = 0
-            else:
-                self.frame += 0.3
+        if self.frame >= len(self.animacoes[0]) -1:
+            self.frame = 0
         else:
-            self.atirar = False
-            if self.frame >= len(self.animacoes[0]) -1:
-                self.frame = 0
-            else:
-                self.frame += 0.3
+            self.frame += 0.3
+        self.colodiu(matriz_inimigos, tabuleiro)
 
     def exibir(self, win):
         if self.atirar == True:
@@ -39,8 +32,9 @@ class Esqueleto(Entidade):
             y0 = cav.y
             y1 = cav.y + (cav.altura * 2)
             if x0 <= tabuleiro.x + (tabuleiro.largura -2) * 64:
-                if y0 - 2 <= self.y <= y1 - 2:
-                        return True
+                self.atirar = True
+                return True
+        self.atirar = False
         return False
     def atirando(self, projeteis):
         if self.cooldown > 0:

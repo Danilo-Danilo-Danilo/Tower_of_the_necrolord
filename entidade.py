@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from spritesheet import *
+from spritesheet import Spritesheet
 import pygame
 
 class Entidade(ABC):

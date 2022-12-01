@@ -1,4 +1,4 @@
-from entidade import *
+from entidade import Entidade
 
 class Esqueleto_Tank(Entidade):
     id = 3

@@ -1,4 +1,4 @@
-from projetil import *
+from projetil import Projetil
 import pygame
 
 

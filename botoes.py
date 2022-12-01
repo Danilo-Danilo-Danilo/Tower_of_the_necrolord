@@ -1,6 +1,5 @@
 import pygame.font
-
-from entidade import *
+from entidade import Entidade
 import pygame
 
 

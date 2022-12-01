@@ -1,4 +1,4 @@
-import pygame
+
 
 class Lugar():
     def __init__(self, x, y, largura, altura):

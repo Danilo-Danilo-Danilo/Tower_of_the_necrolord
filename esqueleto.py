@@ -10,13 +10,15 @@ class Esqueleto(Entidade):
     vel_projetil = 30
     tijolo = pygame.transform.scale((pygame.image.load('sprites/sosso.png')), (32, 32))
     atirar = False
-    cooldown = 7
+    cd = 7
     lado = 0
-    def logica(self, matriz_inimigos, tabuleiro):
+    def logica(self, matriz_inimigos, tabuleiro, projeteis):
         if self.frame >= len(self.animacoes[0]) -1:
             self.frame = 0
         else:
             self.frame += 0.3
+        if self.atirar:
+            self.atirando(projeteis)
         self.colodiu(matriz_inimigos, tabuleiro)
 
     def exibir(self, win):
@@ -32,18 +34,22 @@ class Esqueleto(Entidade):
             y0 = cav.y
             y1 = cav.y + (cav.altura * 2)
             if x0 <= tabuleiro.x + (tabuleiro.largura -2) * 64:
-                self.atirar = True
-                return True
+                if cav.y + (cav.altura * 2) - 8 >= self.y >= cav.y:
+                    if cav.x > self.x:
+                        self.atirar = True
+                        return True
         self.atirar = False
         return False
+    def tempo_Recarga(self):
+        if self.cd == 0:
+            self.cd += 1
+            return True
+        elif self.cd == self.vel_ataque:
+            self.cd = 0
+            return False
+        else:
+            self.cd += 1
     def atirando(self, projeteis):
-        if self.cooldown > 0:
-            self.cooldown += 1
-            if self.cooldown == self.vel_ataque:
-                self.cooldown = 0
-        elif self.cooldown == 0:
-            if self.atirar:
-                projetil = Projetil(self.tijolo, self.x + 10, self.y + 16, self.vel_projetil, self.dano_projetil, self.lado)
-                projeteis.ad_projetil(projetil)
-                self.cooldown += 1
-        return projeteis
+        if self.tempo_Recarga():
+            projetil = Projetil(self.tijolo, self.x + 10, self.y + 16, self.vel_projetil, self.dano_projetil, self.lado)
+            projeteis.ad_projetil(projetil)

@@ -57,12 +57,6 @@ class Tropas:
                                 card_hold.cartas[2].contador = card_hold.cartas[2].recarga
         return mouse, card_hold
 
-
-    def invocar_inimigos(self, x, y, tabuleiro):
-        p = tabuleiro.invocar_em(x, y)
-        if p is not None:
-            self.entidades['inimigos'].append(Mago(p[0], p[1], 32, 32, self.mago_ss, 1, 1, p[2], p[3], 2, ""))
-
     def spawn_inimigos(self, level):
         concluiu = False
         if self.wave < len(level):
@@ -90,29 +84,25 @@ class Tropas:
         for i in self.entidades['inimigos']:
             i.exibir(win)
 
-    def logica(self, mouse):
+    def logica(self, mouse, projeteis):
         for i in self.entidades['inimigos']:
             if i.x + 64 <= 0:
                 self.perdeu = True
         for i in self.entidades['aliados']:
-            if i.id == 2:
-                i.logica(mouse)
-            else:
-                i.logica(self.entidades['inimigos'], self.tabuleiro)
+            match i.id:
+                case 2:
+                    i.logica(mouse)
+                case 1:
+                    i.logica(self.entidades['inimigos'], self.tabuleiro, projeteis)
+                case 3:
+                    i.logica(self.entidades['inimigos'], self.tabuleiro)
             if i.vida <= 0:
                 self.entidades['aliados'].remove(i)
                 self.tabuleiro.blocos[i.linha][i.coluna].tem_unidade = False
         for i in self.entidades['inimigos']:
-            i.logica(self.entidades['aliados'])
-
-    def atirar(self, projeteis):
-        for i in self.entidades['aliados']:
-            if i.id == 1:
-                projeteis = i.atirando(projeteis)
-        for i in self.entidades['inimigos']:
-            if i.id == 2:
-                projeteis = i.atirando(projeteis)
-        return projeteis
-
-
+            match i.id:
+                case 2:
+                    i.logica(self.entidades['aliados'], projeteis)
+                case 1:
+                    i.logica(self.entidades['aliados'])
 

@@ -23,13 +23,12 @@ class Cavaleiro(Entidade):
 
     def colodiu(self, matriz_tropas):
         for esq in matriz_tropas:
-            x0 = esq.x
-            x1 = esq.x + (esq.largura * 2)
-            if self.x <= esq.x + (esq.largura * 2) - 4:
-                if self.tempo_Recarga():
-                    print("atacou")
-                    esq.vida -= self.dano
-                return True
+            if esq.x <= self.x + 5 <= esq.x + (esq.largura * 2):
+                if esq.y - 2 <= self.y <= esq.y + (esq.altura * 2):
+                    if self.tempo_Recarga():
+                        print("atacou")
+                        esq.vida -= self.dano
+                    return True
         return False
 
     def tempo_Recarga(self):

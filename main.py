@@ -20,7 +20,7 @@ pygame.display.set_caption("Tower of the Necrolord!")
 bg_img = pygame.image.load('sprites/bg.png')
 menu = Menu(768, 512)
 sprite_carta = (pygame.transform.scale((pygame.image.load('sprites/card-skeleton-001.png')), (64, 64)))
-lvl_1 = [0,10,552,888,1008,1092,1248,1260,1548,1584,1740,1742,1752,1980,
+lvl_1 = [0,240,552,888,1008,1092,1248,1260,1548,1584,1740,1742,1752,1980,
              1982,2100,2112,2436,2484,2496,2498,2508,2510,2520,2522]
 #lvl_1 = [0, 20]
 lvl_2 = [1,180,340,500,700,751,820,912,978,984,1092,1120,1245,1260,
@@ -142,8 +142,7 @@ while rodando:
 
     while jogando:
         concluiu = entidades.spawn_inimigos(lvl)
-        entidades.logica(mouse)
-        projeteis = entidades.atirar(projeteis)
+        entidades.logica(mouse, projeteis)
         x, y = pygame.mouse.get_pos()
         mouse.logica(card_holder)
         win.blit(bg_img, (0, 0))

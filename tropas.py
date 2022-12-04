@@ -85,24 +85,38 @@ class Tropas:
             i.exibir(win)
 
     def logica(self, mouse, projeteis):
-        for i in self.entidades['inimigos']:
-            if i.x + 64 <= 0:
-                self.perdeu = True
-        for i in self.entidades['aliados']:
+        self.perdemo(self.entidades['inimigos'])
+        self.morreu(self.entidades["aliados"], self.tabuleiro)
+        self.logicaIni(self.entidades['inimigos'], projeteis, self.entidades['aliados'])
+        self.logicaAli(self.entidades['aliados'], projeteis, self.tabuleiro, self.entidades['inimigos'], mouse)
+
+    """separei a logica dos inimigos e aliados da logica tropas"""
+    def logicaAli(self, aliados, projeteis, tabuleiro, inimigos, mouse):
+        for i in aliados:
             match i.id:
                 case 2:
                     i.logica(mouse)
                 case 1:
-                    i.logica(self.entidades['inimigos'], self.tabuleiro, projeteis)
+                    i.logica(inimigos, tabuleiro, projeteis)
                 case 3:
-                    i.logica(self.entidades['inimigos'], self.tabuleiro)
-            if i.vida <= 0:
-                self.entidades['aliados'].remove(i)
-                self.tabuleiro.blocos[i.linha][i.coluna].tem_unidade = False
-        for i in self.entidades['inimigos']:
+                    i.logica(inimigos, tabuleiro)
+    def logicaIni(self, inimigos, projeteis, aliados):
+        for i in inimigos:
             match i.id:
                 case 2:
-                    i.logica(self.entidades['aliados'], projeteis)
+                    i.logica(aliados, projeteis)
                 case 1:
-                    i.logica(self.entidades['aliados'])
+                    i.logica(aliados)
 
+    """separei a função perdemo do logica"""
+    def perdemo(self, inimigos):
+        for i in inimigos:
+            if i.x + 64 <= 0:
+                self.perdeu = True
+                return self.perdeu
+    """Função q verifica se morreu"""
+    def morreu(self, aliados, tabuleiro):
+        for i in aliados:
+            if i.vida <= 0:
+                aliados.remove(i)
+                tabuleiro.blocos[i.linha][i.coluna].tem_unidade = False

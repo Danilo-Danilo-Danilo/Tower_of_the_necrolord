@@ -113,6 +113,7 @@ class Menu:
         else:
             for i in self.todos_botoes:
                 i.logica(mx, my)
+
     def exibir(self, win, como_tela, creditos_tela, tela, proximo_tela, game_over_tela, ganhou_tela):
         if creditos_tela == True:
             win.blit(self.creditos, (0, 0))

@@ -18,11 +18,11 @@ class Tropas:
             'aliados':[]
         }
         self.tabuleiro = tabuleiro
-        self.cava_ss = Spritesheet(pygame.image.load('sprites/ss_cavaleiro.png').convert_alpha())
-        self.esq_ss = Spritesheet(pygame.image.load('sprites/ss_todo.png').convert_alpha())
-        self.altar_ss = Spritesheet(pygame.image.load('sprites/altar_sprite.png').convert_alpha())
-        self.tank_ss = Spritesheet(pygame.image.load('sprites/skeleto_tank.png').convert_alpha())
-        self.mago_ss = Spritesheet(pygame.image.load('sprites/mage-001.png').convert_alpha())
+        self.cava_ss = Spritesheet(pygame.image.load('sprites/ss_cavaleiro.png'))
+        self.esq_ss = Spritesheet(pygame.image.load('sprites/ss_todo.png'))
+        self.altar_ss = Spritesheet(pygame.image.load('sprites/altar_sprite.png'))
+        self.tank_ss = Spritesheet(pygame.image.load('sprites/skeleto_tank.png'))
+        self.mago_ss = Spritesheet(pygame.image.load('sprites/mage-001.png'))
         self.wave = 1
         self.tempo = 0
     def invocar_tropa(self, x, y, tabuleiro, mouse, card_hold):
@@ -85,7 +85,7 @@ class Tropas:
             i.exibir(win)
 
     def logica(self, mouse, projeteis):
-        self.perdemo(self.entidades['inimigos'])
+        self.perdeu = self.perdemo(self.entidades['inimigos'])
         self.morreu(self.entidades["aliados"], self.tabuleiro)
         self.logicaIni(self.entidades['inimigos'], projeteis, self.entidades['aliados'])
         self.logicaAli(self.entidades['aliados'], projeteis, self.tabuleiro, self.entidades['inimigos'], mouse)
@@ -110,13 +110,23 @@ class Tropas:
 
     """separei a função perdemo do logica"""
     def perdemo(self, inimigos):
+        if inimigos == None or len(inimigos) == 0:
+            return False
         for i in inimigos:
             if i.x + 64 <= 0:
-                self.perdeu = True
-                return self.perdeu
+                return True
+            else:
+                return False
+
     """Função q verifica se morreu"""
     def morreu(self, aliados, tabuleiro):
-        for i in aliados:
-            if i.vida <= 0:
-                aliados.remove(i)
-                tabuleiro.blocos[i.linha][i.coluna].tem_unidade = False
+        if len(aliados) == 0:
+            return False
+        else:
+            for i in aliados:
+                if i.vida <= 0:
+                    aliados.remove(i)
+                    tabuleiro.blocos[i.linha][i.coluna].tem_unidade = False
+                    return True
+                else:
+                    return False

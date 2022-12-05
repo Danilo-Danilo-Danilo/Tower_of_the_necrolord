@@ -1,8 +1,11 @@
-import pygame.mouse
-from esqueleto import *
-from mouse import *
-from projeteis import *
-from menu import *
+from esqueleto import Esqueleto
+from mouse import Mouse
+from projeteis import Projeteis
+from campo import Campo
+from menu import Menu
+from tropas import Tropas
+from card_holder import Card_Holder
+import pygame
 pygame.init()
 
 rodando = True
@@ -139,8 +142,7 @@ while rodando:
 
     while jogando:
         concluiu = entidades.spawn_inimigos(lvl)
-        entidades.logica(mouse)
-        projeteis = entidades.atirar(projeteis)
+        entidades.logica(mouse, projeteis)
         x, y = pygame.mouse.get_pos()
         mouse.logica(card_holder)
         win.blit(bg_img, (0, 0))
@@ -168,9 +170,7 @@ while rodando:
 
         entidades.exibir(win)
         projeteis.exibir(win)
-        entidades.matriz_inimigos = projeteis.colisao(entidades.matriz_inimigos, entidades.matriz_tropas)
-        for i in entidades.matriz_inimigos:
-            entidades.matriz_tropas = i.atacar(entidades.matriz_tropas)
+        entidades.entidades['inimigos'] = projeteis.colisao(entidades.entidades['inimigos'], entidades.entidades['aliados'])
         pygame.time.delay(60)
         pygame.display.update()
         if entidades.perdeu:

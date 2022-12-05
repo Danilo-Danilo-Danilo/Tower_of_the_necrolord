@@ -1,6 +1,6 @@
-from spritesheet import *
-from entidade import *
-from tropas import *
+from spritesheet import Spritesheet
+from entidade import Entidade
+from projetil import Projetil
 import pygame
 
 
@@ -8,28 +8,33 @@ class Mago(Entidade):
     id = 2
     vida = 160
     velocidade = 2
-    dano_projetil = 120
+    dano_projetil = 60
     vel_projetil = -30
-    vel_ataque = 60
-    cooldown = 1
+    cooldown = 0
+    andarei = True
     tijolo = pygame.transform.scale((pygame.image.load('sprites/fogo.png')), (32, 32))
     atirar = False
+    parar = False
+    cd = 0
     lado = 1
 
-    def logica(self, matriz_tropas):
+    def logica(self, matriz_tropas, projeteis):
         if self.frame > len(self.animacoes[0]) - 1:
             self.frame = 0
         else:
             self.frame += 0.5
-        if self.atirar and (self.cooldown > 30):
-            self.x = self.x
-        elif not self.colodiu(matriz_tropas):
-            self.x -= self.velocidade
+        if not self.colidiu(matriz_tropas):
+            if self.atirar and 10 < self.cooldown < 15:
+                self.x = self.x
+            else:
+                self.x -= self.velocidade
+        if self.tempo():
+            self.atirando(projeteis)
 
     def exibir(self, win):
         win.blit(self.animacoes[0][int(self.frame)], (self.x, self.y))
 
-    def colodiu(self, matriz_tropas):
+    def colidiu(self, matriz_tropas):
         en_counter = 0
         if len(matriz_tropas) == 0:
             self.atirar = False
@@ -48,18 +53,15 @@ class Mago(Entidade):
                 if y0 - 2 <= self.y <= y1 - 2:
                     return True
         return False
-
-    def atacar(self, matriz_tropas):
-        if self.cooldown > 0:
+    def tempo(self):
+        if self.cooldown == 15:
+            self.cooldown = 0
+            return True
+        elif self.cooldown < 15:
             self.cooldown += 1
-            if self.cooldown == 45:
-                self.cooldown = 0
-        return matriz_tropas
-
+        elif self.cooldown == 0:
+            self.cooldown += 1
     def atirando(self, projeteis):
-        if self.cooldown == 0:
-            if self.atirar:
-                projetil = Projetil(self.tijolo, self.x + 10, self.y + 16, self.vel_projetil, self.dano_projetil, self.lado)
-                projeteis.ad_projetil(projetil)
-                self.cooldown += 1
-        return projeteis
+        if self.atirar:
+            projetil = Projetil(self.tijolo, self.x + 10, self.y + 16, self.vel_projetil, self.dano_projetil, self.lado)
+            projeteis.ad_projetil(projetil)

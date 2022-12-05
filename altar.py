@@ -1,4 +1,4 @@
-from entidade import *
+from entidade import Entidade
 
 class Altar(Entidade):
 

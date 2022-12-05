@@ -1,6 +1,6 @@
 import pygame
-from carta import *
-from spritesheet import *
+from carta import Carta
+from spritesheet import Spritesheet
 
 class Card_Holder():
 
